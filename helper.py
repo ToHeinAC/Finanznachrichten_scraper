@@ -160,12 +160,16 @@ def plot_vaderscores(dataframe, path_to_save):
 
     # Plot a bar chart with pandas
     plt.figure
-    mean_scores.plot(kind='bar', figsize=(12, 8), rot=30)
+    mean_scores.plot(kind='bar', figsize=(12, 6), rot=30)
     plt.grid()
+    plt.xlabel("Date")
+    plt.ylabel("Vader Scores")
+    plt.legend()
     plt.tight_layout()
 
     # Save the plot
     plt.savefig(path_to_save)
+    plt.close()
 
 def plot_countofnewsperday(dataframe, path_to_save):
     #Group by date and ticker columns from scored_news and calculate the count for each day
@@ -175,18 +179,26 @@ def plot_countofnewsperday(dataframe, path_to_save):
     cnt_df=cnt_df.reset_index(level='Datum')
     cnt_df=cnt_df.set_index('Datum')
     plt.figure
-    cnt_df.plot(kind = 'bar', figsize=(12,8), rot=30)
+    cnt_df.plot(kind = 'bar', figsize=(12,6), rot=30)
     plt.grid()
+    plt.xlabel("Date")
+    plt.ylabel("Number of Occurrence")
+    plt.legend()
     plt.tight_layout()
     # Save the plot
     plt.savefig(path_to_save)
+    plt.close()
 
     return cnt_df
 
 def plot_closeprice(dataframe, path_to_save):
     plt.figure(100)
-    dataframe['Close'].plot(figsize=(12, 8), rot=30)
+    dataframe['Close'].plot(figsize=(12, 6), rot=30)
     plt.grid()
+    plt.xlabel("Date")
+    plt.ylabel("Close price in $")
+    plt.legend()
     plt.tight_layout()
     # Save the plot
     plt.savefig(path_to_save)
+    plt.close()

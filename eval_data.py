@@ -25,7 +25,8 @@ df['Aktie']=stocks[0]
 df=df.loc[(df['Leser'] !='Werbung')
           & (df['Schlagzeile'].values != None)
           & (df['Zeit'].values != None)]
-
+df=df.reset_index(drop=True)
+df.to_excel('./tmp/scraped_and_cleaned_news.xlsx', index=False, sheet_name='data')
 
 #translate
 chunk_size = 5
@@ -76,3 +77,5 @@ cnt_df.index = pd.to_datetime(cnt_df.index)
 mask = (hist.index >= min(cnt_df.index))
 nvda_df = hist.loc[mask]
 plot_closeprice(nvda_df, './tmp/fig_closeprice.png')
+
+print('Evaluation successful!')

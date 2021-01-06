@@ -51,3 +51,4 @@ except:
 
 #daten.to_csv('./tmp/scraped_news.csv', encoding='utf-8-sig')
 daten.to_csv('./tmp/scraped_news.csv')
+print('Extraction successful!')
