@@ -1,0 +1,12 @@
+datetime
+pandas
+bs4
+selenium
+deep_translator
+matplotlib
+nltk
+yfinance
+fpdf
+smtplib
+json
+email
