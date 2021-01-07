@@ -11,16 +11,6 @@ import json
 from email.message import EmailMessage
 from datetime import datetime
 
-full = True
-if full:
-    try:
-        exec(open("get_basedata.py").read())
-        exec(open("eval_data.py").read())
-        exec(open("gen_report.py").read())
-    except:
-        exec(open("eval_data.py").read())
-        exec(open("gen_report.py").read())
-
 EMAIL_ADDRESS = 'tobiashein32@gmail.com'
 #EMAIL_PASSWORD = os.environ.get('EMAIL_PASSWORD')
 path_to_json = "./tmp/pass.json"
@@ -73,9 +63,16 @@ def send_email():
     except Exception as exception:
         print("Error: %s!\n\n" % exception)
 
-
 # =============================================================================
 # END OF SEND EMAIL FUNCTION
 # =============================================================================
 
-send_email()
+if __name__ == '__main__':
+    full=True
+    if full:
+        exec(open("get_basedata.py").read())
+        exec(open("eval_data.py").read())
+        exec(open("gen_report.py").read())
+        print('Every basic files executed!')
+
+    send_email()

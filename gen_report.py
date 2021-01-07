@@ -9,12 +9,6 @@
 from fpdf import FPDF
 from datetime import datetime
 
-WIDTH = 210
-HEIGHT = 297
-
-TEST_DATE = datetime.today()
-STOCK = 'NVIDIA'
-
 def create_title(day, stock, pdf):
   # Unicode is not yet supported in the py3k version; use windows-1252 standard font
   pdf.set_font('Arial', '', 24)
@@ -29,13 +23,13 @@ def create_title(day, stock, pdf):
   pdf.ln(10)
 
 
-def create_analytics_report(day=TEST_DATE, filename="report_{}.pdf".format(STOCK)):
+def create_analytics_report(day, stock, filename, WIDTH=210, HEIGHT=297):
     pdf = FPDF()  # A4 (210 by 297 mm)
 
     ''' First Page '''
     pdf.add_page()
     pdf.image("./resources/THdata.png", 0, 0, WIDTH)
-    create_title(day, STOCK, pdf)
+    create_title(day, stock, pdf)
 
     pdf.image("./tmp/fig_closeprice.png", 5, 50, WIDTH - 10)
     pdf.image("./tmp/fig_vaderscores.png", 5, 180, WIDTH - 10)
@@ -50,5 +44,5 @@ def create_analytics_report(day=TEST_DATE, filename="report_{}.pdf".format(STOCK
 
 if __name__ == '__main__':
     today = datetime.today()
-
-    create_analytics_report(today)
+    STOCK = 'NVIDIA'
+    create_analytics_report(today, STOCK, 'report_{}.pdf'.format(STOCK))
